@@ -1,10 +1,9 @@
-const axios = require('axios');
+const Crelate = require('./crelate');
+require('dotenv').config();
 
-axios.create({
-    baseURL: 'https://app.crelate.com',
-    responseType: 'application/json'
-})
-.get('/api/pub/v1/jobs/recent?modified=100000&api_key=7270372c351a473696670de50d1667e0')
+const crelate = new Crelate(process.env.API_KEY, 43200);
+
+crelate.getJobs()
 .then(response => {
     console.log('response======>', response.data.Results);
 })
